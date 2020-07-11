@@ -1,0 +1,18 @@
+
+<div *ngFor = "let delivery of deliveryList" class = "nameList"> 
+    <div>
+        {{delivery.name}}
+    </div>
+
+    <div>
+        {{delivery.id}}
+    </div>
+
+    <div>
+        {{delivery.store}}
+    </div>
+
+    <div>
+        {{delivery.deliveryItems.price}}
+    </div>
+</div>

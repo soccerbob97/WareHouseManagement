@@ -1,0 +1,9 @@
+.nameList {
+    display:flex;
+    border: 5px solid black;
+}
+
+.nameList > div {
+    margin:10px;
+    flex:1;
+}

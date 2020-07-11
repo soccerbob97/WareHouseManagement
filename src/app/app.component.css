@@ -1,0 +1,24 @@
+#header {
+    text-align: center;
+    color:black;
+}
+.mainDiv {
+    display:flex;
+    border:5px solid black;
+   
+}
+
+.CustomerForm {
+
+    font-size: 20px;
+    border-radius: 10px;
+
+    border: 5px solid red;
+    flex:1;
+}
+
+.NameListing {
+    border: 5px solid blue;
+    flex:1;
+}
+

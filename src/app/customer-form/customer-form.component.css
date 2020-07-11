@@ -1,0 +1,25 @@
+.Items{
+    display:flex;
+}
+.Items > div {
+    flex:1;
+    text-align: center;
+    margin:5px;
+    
+}
+
+.submitButton {
+   
+    margin-left: auto;
+    color:white;
+    background-color: blue;
+    border-radius: 10px;
+    padding:5px;
+    font-size: 15px;
+    
+}
+
+.buttons{ 
+    display :flex;
+    margin-top:20px;
+}
