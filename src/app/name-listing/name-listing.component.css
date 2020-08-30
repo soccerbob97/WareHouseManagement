@@ -1,9 +1,79 @@
 .nameList {
     display:flex;
-    border: 5px solid black;
+    
+   
+
+   
+  
 }
 
 .nameList > div {
     margin:10px;
     flex:1;
+    font-size: 17px;
+    justify-self: center;
+    text-align: center;
+   
+}
+
+.Totals {
+    display:flex;
+}
+
+.Totals > div{
+    margin:10px;
+    flex:1;
+    text-align: center;
+    font-size: 17px;
+}
+
+.orderList {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10px;
+    text-align: center;
+}
+
+.orderSummary {
+    font-size: 25px;
+    font-weight: 400;
+    
+    text-align: center;
+}
+
+
+.orderSummaryContent {
+    display:flex;
+    color:steelblue;
+}
+
+
+.orderSummaryContent > div {
+    flex:1;
+    text-align: center;
+    margin:5px;
+    font-size: 17px;
+    
+}
+
+.orderGoodContent {
+    display:flex;
+    justify-content: space-evenly;
+    color: steelblue;
+}
+
+
+.orderGoodContent > div {
+    flex:1;
+    text-align: center;
+    margin-top:40px;
+    font-size: 17px;
+    
+}
+
+.ShipmentValue {
+    text-align: end;
+    margin-top:40px;
+    font-size: 17px;
+    color:steelblue;
 }

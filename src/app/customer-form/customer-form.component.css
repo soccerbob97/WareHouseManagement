@@ -8,11 +8,11 @@
     
 }
 
-.submitButton {
+.bottomButtons {
    
-    margin-left: auto;
+    
     color:white;
-    background-color: blue;
+    background-color: Peru;
     border-radius: 10px;
     padding:5px;
     font-size: 15px;
@@ -22,4 +22,27 @@
 .buttons{ 
     display :flex;
     margin-top:20px;
+    justify-content: space-between;
 }
+
+
+
+#headC {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10px;
+}
+
+.totals {
+    
+    text-align: end;
+    
+
+}
+
+.totals > label {
+    margin: 20px;
+}
+
+
+

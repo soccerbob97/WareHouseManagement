@@ -1,9 +1,11 @@
 
 
 <div class = "container-fluid">
-    <h2 style = "text-align:center;">Customer Form</h2> 
+    <h2 style = "text-align:center;" id = "headC">Customer Form</h2> 
+   
+
     <form [formGroup] = "customerForm" (ngSubmit) = "addDelivery()">
-        {{customerForm.value | json}}
+      
         <div class = "form-group"  >
             <label>Name</label>
 
@@ -66,53 +68,143 @@
             </div>
         </div>
 
-        
-        <div formGroupName = "deliveryItems" class = "Items">
+
+       
+         <ng-container formArrayName = "deliveryItems" 
+         *ngFor="let deliveryFormGroup of deliveryItemsList; let i = index" >
+              
+         <div [formGroup] = "deliveryFormGroup" class = "Items" >
+           
+
             <div class="form-group">
                 <label >Good</label>
-                <input type="text" class="form-control"  formControlName = "good"
-                [class.is-invalid] = "good.touched && good.invalid">
-              
+
+                <input type="text" class="form-control" 
+                formControlName = "good"
+               
+                [class.is-invalid] = "deliveryFormGroup.get('good').touched &&
+                 deliveryFormGroup.get('good').invalid"
+                 
+                >
+                
                 <small class = "text-danger"
-                 *ngIf = "good.touched && good.invalid"> Good is required </small>
+                 *ngIf = "deliveryFormGroup.get('good').touched && 
+                 deliveryFormGroup.get('good').invalid"> Good is required </small> 
+
             </div>
 
             <div class="form-group">
                 <label>Qty</label>
-                <input type="text" class="form-control" formControlName = "qty"
-                [class.is-invalid] = "qty.touched && qty.invalid">
-
-                <div *ngIf = "qty.touched && qty.invalid"> 
+                <input type="number" class="form-control" formControlName = "qty"
+                [class.is-invalid] = "deliveryFormGroup.get('qty').touched && 
+                deliveryFormGroup.get('qty').invalid" (change) = "changedValue()">
+                
+                <div *ngIf = "deliveryFormGroup.get('qty').touched &&
+                 deliveryFormGroup.get('qty').invalid"> 
     
-                    <small class = "text-danger" *ngIf = "qty.errors?.notNumber"> {{qty.errors?.notNumber.value}} is not a number </small>
+                    <small class = "text-danger" 
+                    *ngIf = "deliveryFormGroup.get('qty').errors?.notNumber"> 
+                    {{deliveryFormGroup.get('qty').errors?.notNumber.value}} is not a number </small>
 
-                    <small class = "text-danger" *ngIf = "qty.errors?.zeroNumber && qty.value.length != 0 "> Qty cannot be zero </small>
+                    <small class = "text-danger"
+                     *ngIf = "deliveryFormGroup.get('qty').errors?.zeroNumber"> 
+                      Qty cannot be zero </small>
                
-                    <small class = "text-danger" *ngIf = "qty.errors?.required"> Qty is required </small>
+                    <small class = "text-danger" 
+                    *ngIf = "deliveryFormGroup.get('qty').errors?.required"> Qty is required </small>
+                    
                 </div>
+
+               
+            
             </div>
 
 
             <div class="form-group">
                 <label >Price</label>
-                <input type="text" class="form-control" formControlName = "price"
-                [class.is-invalid] = "price.touched && price.invalid">
-
-                <div *ngIf = "price.touched && price.invalid"> 
+                <input type="number" class="form-control" formControlName = "price"
+                [class.is-invalid] = "deliveryFormGroup.get('price').touched && deliveryFormGroup.get('price').invalid"
+                (change) = "changedValue()">
+                
+                <div *ngIf = "deliveryFormGroup.get('price').touched && deliveryFormGroup.get('price').invalid"> 
     
-                    <small class = "text-danger" *ngIf = "price.errors?.notNumber"> {{price.errors?.notNumber.value}} is not a number </small>
+                    <small class = "text-danger" *ngIf = "deliveryFormGroup.get('price').errors?.notNumber"> {{deliveryFormGroup.get('price').errors?.notNumber.value}} is not a number </small>
 
-                    <small class = "text-danger" *ngIf = "price.errors?.zeroNumber && price.value.length != 0 "> Price cannot be zero </small>
+                    <small class = "text-danger" *ngIf = "deliveryFormGroup.get('price').errors?.zeroNumber "> Price cannot be zero </small>
                
-                    <small class = "text-danger" *ngIf = "price.errors?.required"> Price is required </small>
+                    <small class = "text-danger" *ngIf = "deliveryFormGroup.get('price').errors?.required"> Price is required </small>
                 </div>
+                
 
+            </div>
+
+
+    
+        </div>
+    </ng-container>
+
+<!--
+
+        <div formArrayName = "extraGoods" class = "Items"
+        *ngFor = "let good of extraGoods.controls; let indexNumGood = index;
+        let indexNumQty = index">
+       
+        <div class="form-group">
+            <label >Good</label>
+            <input type="text" class="form-control"  [formControlName] = "indexNumGood"
+            [class.is-invalid] = "indexNumGood.touched && indexNumGood.invalid">
+          
+            <small class = "text-danger"
+             *ngIf = "indexNumGood.touched && indexNumGood.invalid"> Good is required </small>
+        </div>
+
+        <div class="form-group">
+            <label>Qty</label>
+            <input type="text" class="form-control" [formControlName] = "indexNumQty"
+            [class.is-invalid] = "indexNumQty.touched && indexNumQty.invalid">
+
+            <div *ngIf = "qty.touched && qty.invalid"> 
+
+                <small class = "text-danger" *ngIf = "indexNumQty.errors?.notNumber"> {{qty.errors?.notNumber.value}} is not a number </small>
+
+                <small class = "text-danger" *ngIf = "indexNumQty.errors?.zeroNumber && qty.value.length != 0 "> Qty cannot be zero </small>
+           
+                <small class = "text-danger" *ngIf = "indexNumQty.errors?.required"> Qty is required </small>
             </div>
         </div>
 
+
+        <div class="form-group">
+            <label >Price</label>
+            <input type="text" class="form-control" formControlName = "price"
+            [class.is-invalid] = "price.touched && price.invalid">
+
+            <div *ngIf = "price.touched && price.invalid"> 
+
+                <small class = "text-danger" *ngIf = "price.errors?.notNumber"> {{price.errors?.notNumber.value}} is not a number </small>
+
+                <small class = "text-danger" *ngIf = "price.errors?.zeroNumber && price.value.length != 0 "> Price cannot be zero </small>
+           
+                <small class = "text-danger" *ngIf = "price.errors?.required"> Price is required </small>
+            </div>
+
+        </div>
+        
+
+    </div>
+-->
+    <div class = "totals"> 
+        <label> Total Qty : {{totalQty}} </label>
+        <label> Total Price: ${{totalPrice | number : '1.2-3'}} </label>
+    </div>
+
         <div class = "buttons" > 
-            <button class="btn btn-secondary" type ="button"> Add more Goods</button>
-            <button [disabled] = "!customerForm.valid"  class = "submitButton"  type = "submit">Add Order</button>
+
+            <button class = "bottomButtons" type ="button" (click) = "addGoods()" > Add more Goods</button>
+
+            <button type= "button" class = "bottomButtons" (click) = "loadRandom()"> Load Random Data </button>
+
+           <button [disabled] = "!customerForm.valid"  class = "bottomButtons"  type = "submit">Add Order</button> 
         </div>
 
     </form> 

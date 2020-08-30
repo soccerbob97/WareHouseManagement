@@ -1,18 +1,96 @@
+<h2 class="orderList"> Order List </h2>
 
-<div *ngFor = "let delivery of deliveryList" class = "nameList"> 
+
+
+
+<div *ngFor="let delivery of deliveryList; let i = index">
+    <ngb-accordion>
+        <ngb-panel>
+            <ng-template ngbPanelHeader let-opened="opened">
+
+                <div class="nameList">
+                    <div>
+                        {{delivery.name}}
+                    </div>
+
+                    <div>
+                        ${{delivery.totalPrice | number : '1.2-3'}}
+                    </div>
+
+                    <div>
+                        {{delivery.store}}
+                    </div>
+                    <!-- delivery is an element of the deliveryList json data. it contains the info for a delivery -->
+                    <div> 
+                         <button ngbPanelToggle class="btn btn-link p-0">Full Order</button>
+                    </div>
+                    <div> 
+                         <button type = "button" (click) = "removeShippment(i)">X</button>
+                    </div>
+
+
+                </div>
+
+
+            </ng-template>
+
+            <ng-template ngbPanelContent>
+                <h2 class="orderSummary">Order Summary</h2>
+                <div class="orderSummaryContent">
+
+                    <div> Name: {{delivery.name}}</div>
+
+                    <div> ID: {{delivery.id}}</div>
+
+                    <div> Store: {{delivery.store}} </div>
+
+                    <div>
+                        Deliveried Date: {{delivery.date}}
+                    </div>
+
+
+
+                </div>
+
+                <div *ngFor="let items of delivery.deliveryItems; let z = index" class="orderGoodContent">
+                    <div>
+                        Good: {{items.good}}
+                    </div>
+
+                    <div>
+                        Qty: {{items.qty}}
+                    </div>
+
+                    <div>
+                        Price: ${{items.price}}
+                    </div>
+                      <!-- items is an element of deliveryItems. this contains info of each good in the delivery -->
+                </div>
+
+                <div class="ShipmentValue"> 
+                    Total Shippment Price : ${{delivery.totalPrice | number : '1.2-3'}}
+                </div>
+
+
+
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>
+
+<hr />
+
+
+<div class="Totals">
     <div>
-        {{delivery.name}}
+        Total Orders: {{totalOrders}}
     </div>
 
     <div>
-        {{delivery.id}}
+        Total Qty: {{totalInventoryQty}}
     </div>
 
     <div>
-        {{delivery.store}}
-    </div>
-
-    <div>
-        {{delivery.deliveryItems.price}}
+        Total Inventory Price: ${{totalInventoryPrice | number : '1.2-3'}}
     </div>
 </div>
