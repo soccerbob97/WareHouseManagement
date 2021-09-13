@@ -1,6 +1,6 @@
 # WarehouseManage
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7. This project allows employees to add and track goods in the warehouse by filling out reactive forms with custom validation and see summarized and expanded versions of orders.The project can be viewed at https://soccerbob97.github.io/WareHouseManagement/. 
 
 ## Development server
 
